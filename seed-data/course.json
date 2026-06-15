@@ -1,0 +1,3232 @@
+{
+ "slug": "job-switch-accelerator",
+ "title": "The Job-Switch Accelerator: Senior .NET to Lead/Architect & Big Tech",
+ "subtitle": "A 15-week, gap-driven program: daily algorithms, system design under pressure, hands-on distributed .NET, cloud architecture, AI engineering, and interview execution — built for working senior engineers.",
+ "descriptionFile": "course-description.md",
+ "category": "Career & Interview Engineering",
+ "level": "Advanced",
+ "language": "English",
+ "weeksEstimate": 15,
+ "outcomes": [
+  "Solve and narrate medium-level algorithm problems in Python under interview pressure, backed by a spaced-repetition system",
+  "Run a complete system design interview with capacity math, justified trade-offs, and failure-mode analysis",
+  "Build production-grade distributed .NET systems: MassTransit, RabbitMQ, Kafka, sagas, outbox, idempotent consumers",
+  "Design and deploy with gRPC, YARP, polyglot persistence, and Kubernetes",
+  "Architect Azure solutions at AZ-305 level and provision them with Terraform",
+  "Integrate AI capabilities (RAG, agents, embeddings) into .NET systems — the rare-skill differentiator",
+  "Execute the interview itself: STAR story bank, mock-loop protocol, and UAE/KSA + big-tech offer negotiation"
+ ],
+ "prerequisites": [
+  "4+ years of professional software engineering (the course assumes real production experience)",
+  "Working .NET/C# knowledge — the distributed-systems modules build on it",
+  "Ability to read Python (Module 1 teaches interview Python from a C# base)",
+  "~10 hours/week of protected study time for 15 weeks"
+ ],
+ "targetAudience": [
+  "Senior .NET engineers targeting Lead / Solution Architect roles (especially UAE & KSA markets)",
+  "Engineers preparing for big-tech loops (Microsoft, Amazon, and comparable)",
+  "Strong individual contributors whose system design and DSA skills lag their real-world experience"
+ ],
+ "sections": [
+  {
+   "code": "M1",
+   "title": "DSA Mastery in Python — The Daily Track",
+   "track": "Interview",
+   "weekRange": "Weeks 1–15 (daily, in parallel)",
+   "summary": "Pattern-ordered, spaced-repetition algorithm training built for working engineers: deep pattern theory, in-browser Python exercises, explained quizzes, and a graded simulated screen.",
+   "items": [
+    {
+     "type": "Article",
+     "title": "Python for the Whiteboard: Idioms, Complexity Reality & the Grind System",
+     "estMinutes": 60,
+     "isFreePreview": true,
+     "contentFile": "m1a1.md"
+    },
+    {
+     "type": "CodeExercise",
+     "title": "Code: Most Frequent Element",
+     "estMinutes": 15,
+     "isFreePreview": true,
+     "code": {
+      "language": "python",
+      "promptFile": "m1c1.md",
+      "starterCode": "from collections import Counter\n\nnums = [4, 1, 2, 2, 3, 4, 4, 1, 1, 4]\n\n# Print the most frequent element (smallest wins ties)\n",
+      "tests": [
+       {
+        "name": "verified output",
+        "stdin": null,
+        "expectedStdout": "4\n"
+       }
+      ],
+      "solutionCode": "from collections import Counter\n\nnums = [4, 1, 2, 2, 3, 4, 4, 1, 1, 4]\ncounts = Counter(nums)\nbest = max(counts)  # placeholder ordering\ntop = max(counts.values())\nprint(min(v for v, c in counts.items() if c == top))\n",
+      "hintMarkdown": "Counter gives you counts in one line. For the tie-break, find the max count first, then take min() over values holding it."
+     }
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Python Internals & Complexity",
+     "estMinutes": 10,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q1",
+        "text": "`list.pop(0)` in Python is:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q1o1",
+          "text": "O(1), like deque.popleft()",
+          "correct": false
+         },
+         {
+          "id": "q1o2",
+          "text": "O(n) — every remaining element shifts left",
+          "correct": true
+         },
+         {
+          "id": "q1o3",
+          "text": "O(log n)",
+          "correct": false
+         }
+        ],
+        "explanation": "Lists are dynamic arrays; removing the head shifts all remaining elements. Use collections.deque for O(1) at both ends."
+       },
+       {
+        "id": "q2",
+        "text": "Which are true about Python dict/set operations? (select all)",
+        "kind": "multi",
+        "options": [
+         {
+          "id": "q2o1",
+          "text": "Average-case O(1) lookup",
+          "correct": true
+         },
+         {
+          "id": "q2o2",
+          "text": "Worst-case O(n) under pathological collisions",
+          "correct": true
+         },
+         {
+          "id": "q2o3",
+          "text": "`x in my_list` is also O(1)",
+          "correct": false
+         },
+         {
+          "id": "q2o4",
+          "text": "`{}` creates an empty set",
+          "correct": false
+         }
+        ],
+        "explanation": "`x in list` is O(n) — a classic hidden-quadratic source. `{}` is an empty dict; an empty set is set()."
+       },
+       {
+        "id": "q3",
+        "text": "`def f(x, acc=[])` is dangerous because the default list is created once and shared across calls.",
+        "kind": "truefalse",
+        "options": [
+         {
+          "id": "q3o1",
+          "text": "True",
+          "correct": true
+         },
+         {
+          "id": "q3o2",
+          "text": "False",
+          "correct": false
+         }
+        ],
+        "explanation": "Mutable default arguments persist between calls. Use acc=None and create the list inside the function."
+       },
+       {
+        "id": "q4",
+        "text": "Building a string with `s += piece` inside a loop over n pieces is:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q4o1",
+          "text": "O(n)",
+          "correct": false
+         },
+         {
+          "id": "q4o2",
+          "text": "O(n log n)",
+          "correct": false
+         },
+         {
+          "id": "q4o3",
+          "text": "O(n²) — strings are immutable, each += copies",
+          "correct": true
+         }
+        ],
+        "explanation": "Each concatenation copies the whole string so far. Collect parts in a list and \"\".join(parts) for O(n)."
+       },
+       {
+        "id": "q5",
+        "text": "In Python, `-7 // 2` equals:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q5o1",
+          "text": "-3 (truncates toward zero, like C#)",
+          "correct": false
+         },
+         {
+          "id": "q5o2",
+          "text": "-4 (floors toward negative infinity)",
+          "correct": true
+         },
+         {
+          "id": "q5o3",
+          "text": "-3.5",
+          "correct": false
+         }
+        ],
+        "explanation": "Python floor-divides toward −∞, unlike C# integer division which truncates toward 0. It matters in binary search and modular math."
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "Arrays, Hashing & Two Pointers: The Decision Tree",
+     "estMinutes": 75,
+     "isFreePreview": false,
+     "contentFile": "m1a2.md"
+    },
+    {
+     "type": "CodeExercise",
+     "title": "Code: Two Sum",
+     "estMinutes": 20,
+     "isFreePreview": false,
+     "code": {
+      "language": "python",
+      "promptFile": "m1c2.md",
+      "starterCode": "cases = [\n    ([2, 7, 11, 15], 9),\n    ([3, 2, 4], 6),\n    ([3, 3], 6),\n]\n\ndef two_sum(nums, target):\n    # return [i, j] with i < j\n    pass\n\nfor nums, target in cases:\n    i, j = two_sum(nums, target)\n    print(i, j)\n",
+      "tests": [
+       {
+        "name": "verified output",
+        "stdin": null,
+        "expectedStdout": "0 1\n1 2\n0 1\n"
+       }
+      ],
+      "solutionCode": "cases = [\n    ([2, 7, 11, 15], 9),\n    ([3, 2, 4], 6),\n    ([3, 3], 6),\n]\n\ndef two_sum(nums, target):\n    seen = {}\n    for i, n in enumerate(nums):\n        if target - n in seen:\n            return [seen[target - n], i]\n        seen[n] = i\n\nfor nums, target in cases:\n    i, j = two_sum(nums, target)\n    print(i, j)\n",
+      "hintMarkdown": "Store value→index AFTER checking for the complement — that is what makes case [3,3] return 0 1 instead of pairing the element with itself."
+     }
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Hashing & Two Pointers",
+     "estMinutes": 10,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q6",
+        "text": "In Two Sum, you store each value in the seen-map AFTER checking for its complement so that:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q6o1",
+          "text": "The map stays smaller",
+          "correct": false
+         },
+         {
+          "id": "q6o2",
+          "text": "Duplicate values like [3,3] target 6 resolve correctly and an element never pairs with itself",
+          "correct": true
+         },
+         {
+          "id": "q6o3",
+          "text": "Lookups get faster",
+          "correct": false
+         }
+        ],
+        "explanation": "Check-then-store means the current element can only match a previously seen element — which handles duplicates and the \"same element twice\" rule in one move."
+       },
+       {
+        "id": "q7",
+        "text": "The canonical-form trick in Group Anagrams works because:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q7o1",
+          "text": "Sorting is fast",
+          "correct": false
+         },
+         {
+          "id": "q7o2",
+          "text": "Equivalent inputs map to an equal key, so a dict can group them",
+          "correct": true
+         },
+         {
+          "id": "q7o3",
+          "text": "Anagrams have equal length",
+          "correct": false
+         }
+        ],
+        "explanation": "Canonicalization turns \"equivalent\" into \"equal\" — sorted(\"eat\") == sorted(\"tea\"). The grouping then falls out of a plain dict."
+       },
+       {
+        "id": "q8",
+        "text": "Longest Consecutive Sequence with a set is O(n) despite nested loops because:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q8o1",
+          "text": "Sets make everything O(1)",
+          "correct": false
+         },
+         {
+          "id": "q8o2",
+          "text": "The inner walk only starts at sequence heads, and each element is walked at most once overall",
+          "correct": true
+         },
+         {
+          "id": "q8o3",
+          "text": "n is small in practice",
+          "correct": false
+         }
+        ],
+        "explanation": "Amortized analysis: the head check (n-1 not in set) ensures each sequence is walked exactly once from its start, bounding total inner work by n."
+       },
+       {
+        "id": "q9",
+        "text": "Which problems are prefix-sum + hashmap in disguise? (select all)",
+        "kind": "multi",
+        "options": [
+         {
+          "id": "q9o1",
+          "text": "Subarray Sum Equals K",
+          "correct": true
+         },
+         {
+          "id": "q9o2",
+          "text": "Contiguous Array (equal 0s/1s)",
+          "correct": true
+         },
+         {
+          "id": "q9o3",
+          "text": "Valid Parentheses",
+          "correct": false
+         },
+         {
+          "id": "q9o4",
+          "text": "3Sum",
+          "correct": false
+         }
+        ],
+        "explanation": "Both ask \"have I seen prefix − k before?\" — Two Sum on running prefixes. Parentheses is a stack; 3Sum is sort + two pointers."
+       },
+       {
+        "id": "q10",
+        "text": "Two pointers on a sorted array beats a hashmap when the priority is O(1) extra space.",
+        "kind": "truefalse",
+        "options": [
+         {
+          "id": "q10o1",
+          "text": "True",
+          "correct": true
+         },
+         {
+          "id": "q10o2",
+          "text": "False",
+          "correct": false
+         }
+        ],
+        "explanation": "Hashing trades space for time; converging pointers exploit sortedness for O(1) space. Naming that trade-off aloud is the senior move."
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "Sliding Window & the Stack Family: Windows, Nesting, Monotonic Magic",
+     "estMinutes": 75,
+     "isFreePreview": false,
+     "contentFile": "m1a3.md"
+    },
+    {
+     "type": "CodeExercise",
+     "title": "Code: Longest Unique Substring",
+     "estMinutes": 25,
+     "isFreePreview": false,
+     "code": {
+      "language": "python",
+      "promptFile": "m1c3.md",
+      "starterCode": "strings = [\"abcabcbb\", \"bbbbb\", \"pwwkew\", \"\"]\n\ndef longest_unique(s):\n    # length of longest substring without repeating characters\n    pass\n\nfor s in strings:\n    print(longest_unique(s))\n",
+      "tests": [
+       {
+        "name": "verified output",
+        "stdin": null,
+        "expectedStdout": "3\n1\n3\n0\n"
+       }
+      ],
+      "solutionCode": "strings = [\"abcabcbb\", \"bbbbb\", \"pwwkew\", \"\"]\n\ndef longest_unique(s):\n    seen, left, best = set(), 0, 0\n    for right, ch in enumerate(s):\n        while ch in seen:\n            seen.remove(s[left]); left += 1\n        seen.add(ch)\n        best = max(best, right - left + 1)\n    return best\n\nfor s in strings:\n    print(longest_unique(s))\n",
+      "hintMarkdown": "Invariant: no repeats inside the window. Expand right every step; while the new char breaks the invariant, shrink from the left. best updates after restoration."
+     }
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Windows & Stacks",
+     "estMinutes": 10,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q11",
+        "text": "A variable-size sliding window is O(n) despite its inner while-loop because:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q11o1",
+          "text": "The while rarely executes",
+          "correct": false
+         },
+         {
+          "id": "q11o2",
+          "text": "Each pointer only moves forward, so total work is bounded by 2n",
+          "correct": true
+         },
+         {
+          "id": "q11o3",
+          "text": "Python optimizes it",
+          "correct": false
+         }
+        ],
+        "explanation": "left never moves backward — at most n increments across the whole run. Sum of all shrinks ≤ n, so total ≤ 2n."
+       },
+       {
+        "id": "q12",
+        "text": "In Longest Repeating Character Replacement, a stale max_freq after shrinking is safe because:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q12o1",
+          "text": "max_freq is recomputed each step",
+          "correct": false
+         },
+         {
+          "id": "q12o2",
+          "text": "A stale max only keeps the window conservatively small — it can never report a false best",
+          "correct": true
+         },
+         {
+          "id": "q12o3",
+          "text": "The window never shrinks",
+          "correct": false
+         }
+        ],
+        "explanation": "The answer only improves when a genuinely higher max_freq appears. Staleness can delay growth but never inflates the recorded best — correctness holds."
+       },
+       {
+        "id": "q13",
+        "text": "Valid Parentheses has two classic bugs. Which are they? (select all)",
+        "kind": "multi",
+        "options": [
+         {
+          "id": "q13o1",
+          "text": "Popping from an empty stack on a leading closer",
+          "correct": true
+         },
+         {
+          "id": "q13o2",
+          "text": "Forgetting to require an empty stack at the end",
+          "correct": true
+         },
+         {
+          "id": "q13o3",
+          "text": "Using a dict for pair lookup",
+          "correct": false
+         },
+         {
+          "id": "q13o4",
+          "text": "Iterating the string twice",
+          "correct": false
+         }
+        ],
+        "explanation": "\")(\" crashes naive pops; \"((\" passes if you forget the final emptiness check. Edge-case discipline is what this problem actually tests."
+       },
+       {
+        "id": "q14",
+        "text": "In Daily Temperatures, the monotonic stack stores indices rather than values because:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q14o1",
+          "text": "Indices are smaller",
+          "correct": false
+         },
+         {
+          "id": "q14o2",
+          "text": "The answer needs distances, and indices recover values but not vice versa",
+          "correct": true
+         },
+         {
+          "id": "q14o3",
+          "text": "Values may repeat",
+          "correct": false
+         }
+        ],
+        "explanation": "res[j] = i − j needs positions. From an index you can always read temps[j]; from a value you cannot recover where it was."
+       },
+       {
+        "id": "q15",
+        "text": "Every element in a monotonic-stack pass is pushed once and popped at most once, giving O(n) total.",
+        "kind": "truefalse",
+        "options": [
+         {
+          "id": "q15o1",
+          "text": "True",
+          "correct": true
+         },
+         {
+          "id": "q15o2",
+          "text": "False",
+          "correct": false
+         }
+        ],
+        "explanation": "That ≤ 2n operations bound is the amortized argument — deliver it unprompted and you have separated yourself from most candidates."
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "Binary Search Beyond Arrays & the Four Linked-List Mechanics",
+     "estMinutes": 70,
+     "isFreePreview": false,
+     "contentFile": "m1a4.md"
+    },
+    {
+     "type": "CodeExercise",
+     "title": "Code: Lower Bound",
+     "estMinutes": 20,
+     "isFreePreview": false,
+     "code": {
+      "language": "python",
+      "promptFile": "m1c4.md",
+      "starterCode": "nums = [1, 3, 3, 5, 8, 13]\nqueries = [3, 4, 0, 14]\n\ndef lower_bound(nums, target):\n    # index of first element >= target, or len(nums)\n    pass\n\nfor t in queries:\n    print(lower_bound(nums, t))\n",
+      "tests": [
+       {
+        "name": "verified output",
+        "stdin": null,
+        "expectedStdout": "1\n3\n0\n6\n"
+       }
+      ],
+      "solutionCode": "nums = [1, 3, 3, 5, 8, 13]\nqueries = [3, 4, 0, 14]\n\ndef lower_bound(nums, target):\n    lo, hi = 0, len(nums)\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if nums[mid] >= target:\n            hi = mid\n        else:\n            lo = mid + 1\n    return lo\n\nfor t in queries:\n    print(lower_bound(nums, t))\n",
+      "hintMarkdown": "Half-open [lo, hi): hi starts at len(nums), not len(nums)-1. If nums[mid] >= target, mid might be the answer → hi = mid. Otherwise exclude it → lo = mid + 1."
+     }
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Binary Search & Linked Lists",
+     "estMinutes": 10,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q16",
+        "text": "The half-open [lo, hi) lower-bound template cannot infinite-loop because:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q16o1",
+          "text": "mid is rounded down",
+          "correct": false
+         },
+         {
+          "id": "q16o2",
+          "text": "Both branches strictly shrink the range: hi = mid < old hi, and lo = mid + 1 > old lo",
+          "correct": true
+         },
+         {
+          "id": "q16o3",
+          "text": "Python checks for it",
+          "correct": false
+         }
+        ],
+        "explanation": "Strict shrinkage every iteration plus the invariant \"answer ∈ [lo, hi)\" is the whole correctness proof — say it before anyone asks."
+       },
+       {
+        "id": "q17",
+        "text": "\"Binary search on the answer\" applies when:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q17o1",
+          "text": "The array is sorted",
+          "correct": false
+         },
+         {
+          "id": "q17o2",
+          "text": "Feasibility is monotonic over the answer space — if k works, everything beyond k works",
+          "correct": true
+         },
+         {
+          "id": "q17o3",
+          "text": "n is large",
+          "correct": false
+         }
+        ],
+        "explanation": "Koko, ship-packages, split-array: search candidate answers, not the data. The monotonic ok(x) predicate is the recognition trigger."
+       },
+       {
+        "id": "q18",
+        "text": "Which are real-world instances of binary search on a monotonic predicate? (select all)",
+        "kind": "multi",
+        "options": [
+         {
+          "id": "q18o1",
+          "text": "git bisect over commits",
+          "correct": true
+         },
+         {
+          "id": "q18o2",
+          "text": "Minimum worker count to drain a queue within SLA",
+          "correct": true
+         },
+         {
+          "id": "q18o3",
+          "text": "Hash table lookup",
+          "correct": false
+         },
+         {
+          "id": "q18o4",
+          "text": "DFS on a tree",
+          "correct": false
+         }
+        ],
+        "explanation": "bisect asks \"is the bug present yet?\"; capacity planning asks \"does k workers suffice?\" — both monotonic yes/no boundaries."
+       },
+       {
+        "id": "q19",
+        "text": "In Merge K Sorted Lists with heapq, tuples need a tiebreaker index because:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q19o1",
+          "text": "It is faster",
+          "correct": false
+         },
+         {
+          "id": "q19o2",
+          "text": "On equal values the heap compares the next tuple element, and ListNode objects are not comparable — it crashes",
+          "correct": true
+         },
+         {
+          "id": "q19o3",
+          "text": "The heap requires unique keys",
+          "correct": false
+         }
+        ],
+        "explanation": "(val, i, node) — the i ensures comparison never reaches the node. A correctness detail that has sunk many otherwise-perfect solutions."
+       },
+       {
+        "id": "q20",
+        "text": "A dummy head node removes head-mutation special cases in linked-list problems.",
+        "kind": "truefalse",
+        "options": [
+         {
+          "id": "q20o1",
+          "text": "True",
+          "correct": true
+         },
+         {
+          "id": "q20o2",
+          "text": "False",
+          "correct": false
+         }
+        ],
+        "explanation": "Anchoring at dummy makes the real head an ordinary node — Remove-Nth, merges, and partitions all simplify. Using it unprompted reads as experience."
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "Trees & Graphs: The Round That Decides Senior Loops",
+     "estMinutes": 90,
+     "isFreePreview": false,
+     "contentFile": "m1a5.md"
+    },
+    {
+     "type": "CodeExercise",
+     "title": "Code: Number of Islands",
+     "estMinutes": 25,
+     "isFreePreview": false,
+     "code": {
+      "language": "python",
+      "promptFile": "m1c5.md",
+      "starterCode": "grid = [\n    [\"1\",\"1\",\"0\",\"0\",\"0\"],\n    [\"1\",\"1\",\"0\",\"0\",\"0\"],\n    [\"0\",\"0\",\"1\",\"0\",\"0\"],\n    [\"0\",\"0\",\"0\",\"1\",\"1\"],\n]\n\ndef num_islands(grid):\n    pass\n\nprint(num_islands(grid))\n",
+      "tests": [
+       {
+        "name": "verified output",
+        "stdin": null,
+        "expectedStdout": "3\n"
+       }
+      ],
+      "solutionCode": "grid = [\n    [\"1\",\"1\",\"0\",\"0\",\"0\"],\n    [\"1\",\"1\",\"0\",\"0\",\"0\"],\n    [\"0\",\"0\",\"1\",\"0\",\"0\"],\n    [\"0\",\"0\",\"0\",\"1\",\"1\"],\n]\n\ndef num_islands(grid):\n    rows, cols = len(grid), len(grid[0])\n    def sink(r, c):\n        if not (0 <= r < rows and 0 <= c < cols) or grid[r][c] != \"1\":\n            return\n        grid[r][c] = \"0\"\n        for dr, dc in ((1,0),(-1,0),(0,1),(0,-1)):\n            sink(r + dr, c + dc)\n    count = 0\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == \"1\":\n                count += 1\n                sink(r, c)\n    return count\n\nprint(num_islands(grid))\n",
+      "hintMarkdown": "Bounds-check FIRST inside sink, then mark visited by mutating to \"0\", then recurse 4 ways. Count goes up only when you discover an unsunk land cell in the outer scan."
+     }
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Trees & Graphs",
+     "estMinutes": 10,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q21",
+        "text": "Checking only parent–child ordering fails to validate a BST because:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q21o1",
+          "text": "It is too slow",
+          "correct": false
+         },
+         {
+          "id": "q21o2",
+          "text": "A grandchild can violate a grandparent’s bound while satisfying its parent — bounds must be inherited down",
+          "correct": true
+         },
+         {
+          "id": "q21o3",
+          "text": "BSTs allow duplicates",
+          "correct": false
+         }
+        ],
+        "explanation": "Counterexample: root 5, right child 7, right-left grandchild 4. Locally fine, globally invalid. Pass (lo, hi) bounds — or validate via in-order sortedness."
+       },
+       {
+        "id": "q22",
+        "text": "In level-order BFS, `for _ in range(len(q))` exists to:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q22o1",
+          "text": "Speed up the queue",
+          "correct": false
+         },
+         {
+          "id": "q22o2",
+          "text": "Freeze the current level’s size so levels stay separated as children are enqueued",
+          "correct": true
+         },
+         {
+          "id": "q22o3",
+          "text": "Avoid recursion",
+          "correct": false
+         }
+        ],
+        "explanation": "Snapshot-the-size is the load-bearing trick behind Right Side View, Zigzag, and every per-level computation."
+       },
+       {
+        "id": "q23",
+        "text": "Mark nodes visited when ENQUEUED (not dequeued) in BFS because:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q23o1",
+          "text": "It is conventional",
+          "correct": false
+         },
+         {
+          "id": "q23o2",
+          "text": "Otherwise a node can enter the queue multiple times — a memory and correctness bug",
+          "correct": true
+         },
+         {
+          "id": "q23o3",
+          "text": "Dequeue is slower",
+          "correct": false
+         }
+        ],
+        "explanation": "Two neighbors can both enqueue the same node before it is processed. Mark on enqueue to guarantee single entry."
+       },
+       {
+        "id": "q24",
+        "text": "Which hide a graph problem? (select all)",
+        "kind": "multi",
+        "options": [
+         {
+          "id": "q24o1",
+          "text": "Grid of land/water cells",
+          "correct": true
+         },
+         {
+          "id": "q24o2",
+          "text": "Course prerequisite pairs",
+          "correct": true
+         },
+         {
+          "id": "q24o3",
+          "text": "Words differing by one letter (Word Ladder)",
+          "correct": true
+         },
+         {
+          "id": "q24o4",
+          "text": "Finding a max in an array",
+          "correct": false
+         }
+        ],
+        "explanation": "Cells/words/courses are nodes; adjacency/one-letter-diff/prereq pairs are edges. Recognition is the skill — traversal is the easy part."
+       },
+       {
+        "id": "q25",
+        "text": "Kahn’s algorithm detects a cycle when nodes processed < total nodes.",
+        "kind": "truefalse",
+        "options": [
+         {
+          "id": "q25o1",
+          "text": "True",
+          "correct": true
+         },
+         {
+          "id": "q25o2",
+          "text": "False",
+          "correct": false
+         }
+        ],
+        "explanation": "If a cycle exists, its members never reach indegree 0 and are never taken. \"Leftovers ⇒ cycle\" — the same logic resolves DI and build-order dependencies."
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "Heaps, Backtracking & a Working DP Procedure",
+     "estMinutes": 90,
+     "isFreePreview": false,
+     "contentFile": "m1a6.md"
+    },
+    {
+     "type": "CodeExercise",
+     "title": "Code: House Robber",
+     "estMinutes": 20,
+     "isFreePreview": false,
+     "code": {
+      "language": "python",
+      "promptFile": "m1c6.md",
+      "starterCode": "cases = [\n    [1, 2, 3, 1],\n    [2, 7, 9, 3, 1],\n    [5],\n]\n\ndef rob(nums):\n    pass\n\nfor nums in cases:\n    print(rob(nums))\n",
+      "tests": [
+       {
+        "name": "verified output",
+        "stdin": null,
+        "expectedStdout": "4\n12\n5\n"
+       }
+      ],
+      "solutionCode": "cases = [\n    [1, 2, 3, 1],\n    [2, 7, 9, 3, 1],\n    [5],\n]\n\ndef rob(nums):\n    prev2 = prev1 = 0\n    for n in nums:\n        prev2, prev1 = prev1, max(prev1, prev2 + n)\n    return prev1\n\nfor nums in cases:\n    print(rob(nums))\n",
+      "hintMarkdown": "State dp[i] = best loot from first i houses. Recurrence: max(skip → dp[i-1], rob → dp[i-2] + v[i]). Only two prior states are needed — hence two variables."
+     }
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Heaps, Backtracking & DP",
+     "estMinutes": 10,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q26",
+        "text": "For the k largest elements of a stream you maintain a MIN-heap of size k because:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q26o1",
+          "text": "Min-heaps are faster",
+          "correct": false
+         },
+         {
+          "id": "q26o2",
+          "text": "The root is the weakest of the current elite — each newcomer fights exactly one gatekeeper in O(log k)",
+          "correct": true
+         },
+         {
+          "id": "q26o3",
+          "text": "heapq has no max-heap",
+          "correct": false
+         }
+        ],
+        "explanation": "If the newcomer beats heap[0], replace it; otherwise discard. O(n log k) time, O(k) space — and it works on infinite streams, unlike sorting."
+       },
+       {
+        "id": "q27",
+        "text": "`heapq.heapify(xs)` on n elements costs:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q27o1",
+          "text": "O(n log n)",
+          "correct": false
+         },
+         {
+          "id": "q27o2",
+          "text": "O(n)",
+          "correct": true
+         },
+         {
+          "id": "q27o3",
+          "text": "O(log n)",
+          "correct": false
+         }
+        ],
+        "explanation": "Bottom-up heap construction is linear — a precision point that changes several top-k complexity answers."
+       },
+       {
+        "id": "q28",
+        "text": "In backtracking, `res.append(path[:])` instead of `res.append(path)` matters because:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q28o1",
+          "text": "Slices are faster",
+          "correct": false
+         },
+         {
+          "id": "q28o2",
+          "text": "path keeps mutating — appending the reference makes every stored result the same (finally empty) list",
+          "correct": true
+         },
+         {
+          "id": "q28o3",
+          "text": "Lists cannot be nested",
+          "correct": false
+         }
+        ],
+        "explanation": "The snapshot copy is the single most common backtracking bug. choose → explore → unchoose mutates path the whole way through."
+       },
+       {
+        "id": "q29",
+        "text": "Which statements about the 5-step DP procedure are correct? (select all)",
+        "kind": "multi",
+        "options": [
+         {
+          "id": "q29o1",
+          "text": "State design asks: what minimally describes a subproblem?",
+          "correct": true
+         },
+         {
+          "id": "q29o2",
+          "text": "Top-down memoization is legitimate DP and earns full credit at most companies",
+          "correct": true
+         },
+         {
+          "id": "q29o3",
+          "text": "Greedy always matches DP on coin problems",
+          "correct": false
+         },
+         {
+          "id": "q29o4",
+          "text": "Space squeeze applies when dp[i] depends only on a fixed window of prior states",
+          "correct": true
+         }
+        ],
+        "explanation": "Greedy fails on coins {1,3,4} amount 6: greedy 4+1+1 vs optimal 3+3. Brute recursion → memoize → bottom-up is the de-risking sequence under pressure."
+       },
+       {
+        "id": "q30",
+        "text": "Stuck on a DP problem live, your first move is to write a correct brute-force recursion.",
+        "kind": "truefalse",
+        "options": [
+         {
+          "id": "q30o1",
+          "text": "True",
+          "correct": true
+         },
+         {
+          "id": "q30o2",
+          "text": "False",
+          "correct": false
+         }
+        ],
+        "explanation": "A correct exponential solution scores; a broken DP does not. Then say \"overlapping subproblems — I’ll memoize\" and add @functools.cache."
+       }
+      ]
+     }
+    },
+    {
+     "type": "Assignment",
+     "title": "Capstone: The Simulated Screen (Graded)",
+     "estMinutes": 120,
+     "isFreePreview": false,
+     "assignment": {
+      "instructionsFile": "m1cap.md",
+      "totalPoints": 100,
+      "rubric": [
+       {
+        "criterion": "Correctness across all three problems incl. edge cases",
+        "points": 30
+       },
+       {
+        "criterion": "Pattern recognition & approach (brute force first, pattern named)",
+        "points": 20
+       },
+       {
+        "criterion": "Communication: continuous narration, complexity unprompted",
+        "points": 20
+       },
+       {
+        "criterion": "Code quality: idiomatic Module-1 Python",
+        "points": 15
+       },
+       {
+        "criterion": "Self-assessment specificity & grind system evidence",
+        "points": 15
+       }
+      ],
+      "submissionHint": "Paste your three solutions (or a gist/repo link) plus the 300–500 word self-review and your tracker totals."
+     }
+    },
+    {
+     "type": "Resource",
+     "title": "The Grind Arsenal: Curated Practice Resources",
+     "estMinutes": 5,
+     "isFreePreview": false,
+     "countsTowardCompletion": false,
+     "resource": {
+      "description": "Everything referenced across Module 1, in one place. Work the problem sets per lesson; use these only as the source pool.",
+      "links": [
+       {
+        "title": "NeetCode 150 (pattern-ordered problem list)",
+        "url": "https://neetcode.io/practice"
+       },
+       {
+        "title": "LeetCode (problem source)",
+        "url": "https://leetcode.com/problemset/"
+       },
+       {
+        "title": "Python heapq documentation",
+        "url": "https://docs.python.org/3/library/heapq.html"
+       },
+       {
+        "title": "Python collections documentation (Counter, deque, defaultdict)",
+        "url": "https://docs.python.org/3/library/collections.html"
+       },
+       {
+        "title": "Pramp — free peer mock interviews",
+        "url": "https://www.pramp.com/"
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "code": "M2",
+   "title": "System Design Foundations",
+   "track": "Interview",
+   "weekRange": "Weeks 1–3",
+   "summary": "The senior/staff filter. Capacity math, scaling reads and writes, queues and streams — ending in a full Careem-style design lab.",
+   "items": [
+    {
+     "type": "Article",
+     "title": "The Interview Format & Capacity Estimation",
+     "estMinutes": 60,
+     "isFreePreview": false,
+     "contentFile": "m2l1.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: The Interview Format & Capacity Estimation",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q31",
+        "text": "The correct first move in a system design interview is:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q31o1",
+          "text": "Drawing the architecture immediately",
+          "correct": false
+         },
+         {
+          "id": "q31o2",
+          "text": "Clarifying functional and non-functional requirements",
+          "correct": true
+         },
+         {
+          "id": "q31o3",
+          "text": "Choosing the database",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q32",
+        "text": "Roughly how many seconds are in a day (for capacity math)?",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q32o1",
+          "text": "~86,400 (round to 100K)",
+          "correct": true
+         },
+         {
+          "id": "q32o2",
+          "text": "~8,640",
+          "correct": false
+         },
+         {
+          "id": "q32o3",
+          "text": "~864,000",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q33",
+        "text": "10M daily active users each making 10 requests/day is roughly what average RPS?",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q33o1",
+          "text": "~1,000 RPS",
+          "correct": true
+         },
+         {
+          "id": "q33o2",
+          "text": "~100 RPS",
+          "correct": false
+         },
+         {
+          "id": "q33o3",
+          "text": "~100,000 RPS",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "Scaling Reads: Caching, Replication & CDNs",
+     "estMinutes": 75,
+     "isFreePreview": false,
+     "contentFile": "m2l2.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Scaling Reads: Caching, Replication & CDNs",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q34",
+        "text": "Cache-aside means:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q34o1",
+          "text": "The app checks the cache first, loads from DB on miss, then populates the cache",
+          "correct": true
+         },
+         {
+          "id": "q34o2",
+          "text": "The cache writes to the DB automatically",
+          "correct": false
+         },
+         {
+          "id": "q34o3",
+          "text": "The DB pushes changes to the cache",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q35",
+        "text": "Read replicas introduce which fundamental problem?",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q35o1",
+          "text": "Replication lag → stale reads",
+          "correct": true
+         },
+         {
+          "id": "q35o2",
+          "text": "Slower writes on the primary",
+          "correct": false
+         },
+         {
+          "id": "q35o3",
+          "text": "Larger indexes",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q36",
+        "text": "A thundering herd / cache stampede is mitigated by:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q36o1",
+          "text": "Request coalescing, jittered TTLs, or locks on rebuild",
+          "correct": true
+         },
+         {
+          "id": "q36o2",
+          "text": "Removing the cache",
+          "correct": false
+         },
+         {
+          "id": "q36o3",
+          "text": "Longer database timeouts",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "Scaling Writes: Sharding, Partitioning & Consistency",
+     "estMinutes": 75,
+     "isFreePreview": false,
+     "contentFile": "m2l3.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Scaling Writes: Sharding, Partitioning & Consistency",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q37",
+        "text": "A good shard key primarily needs to:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q37o1",
+          "text": "Distribute load evenly and match the dominant access pattern",
+          "correct": true
+         },
+         {
+          "id": "q37o2",
+          "text": "Be sequential",
+          "correct": false
+         },
+         {
+          "id": "q37o3",
+          "text": "Be a GUID",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q38",
+        "text": "Per CAP, during a network partition a system must choose between:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q38o1",
+          "text": "Consistency and availability",
+          "correct": true
+         },
+         {
+          "id": "q38o2",
+          "text": "Latency and throughput",
+          "correct": false
+         },
+         {
+          "id": "q38o3",
+          "text": "Reads and writes",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q39",
+        "text": "Hot partitions are typically caused by:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q39o1",
+          "text": "A skewed shard key (e.g., celebrity user, current date)",
+          "correct": true
+         },
+         {
+          "id": "q39o2",
+          "text": "Too many shards",
+          "correct": false
+         },
+         {
+          "id": "q39o3",
+          "text": "Using consistent hashing",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "Queues, Streams & Backpressure",
+     "estMinutes": 75,
+     "isFreePreview": false,
+     "contentFile": "m2l4.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Queues, Streams & Backpressure",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q40",
+        "text": "The main architectural reason to put a queue between services is to:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q40o1",
+          "text": "Decouple producers from consumers and absorb load spikes",
+          "correct": true
+         },
+         {
+          "id": "q40o2",
+          "text": "Make requests faster",
+          "correct": false
+         },
+         {
+          "id": "q40o3",
+          "text": "Avoid writing APIs",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q41",
+        "text": "At-least-once delivery implies consumers must be:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q41o1",
+          "text": "Idempotent",
+          "correct": true
+         },
+         {
+          "id": "q41o2",
+          "text": "Stateless",
+          "correct": false
+         },
+         {
+          "id": "q41o3",
+          "text": "Single-threaded",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q42",
+        "text": "A queue vs a log (Kafka) differs mainly in that a log:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q42o1",
+          "text": "Retains messages and lets multiple consumer groups replay them",
+          "correct": true
+         },
+         {
+          "id": "q42o2",
+          "text": "Deletes messages on read",
+          "correct": false
+         },
+         {
+          "id": "q42o3",
+          "text": "Cannot scale horizontally",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Assignment",
+     "title": "LAB: Design a Ride-Hailing Backend (Careem-style) (Graded)",
+     "estMinutes": 120,
+     "isFreePreview": false,
+     "assignment": {
+      "instructionsFile": "m2l5.md",
+      "totalPoints": 100,
+      "rubric": [
+       {
+        "criterion": "Requirements & capacity estimation with explicit numbers",
+        "points": 20
+       },
+       {
+        "criterion": "Architecture diagram: every component justified",
+        "points": 25
+       },
+       {
+        "criterion": "Data model & API design quality",
+        "points": 20
+       },
+       {
+        "criterion": "Bottleneck analysis + at least two failure scenarios handled",
+        "points": 20
+       },
+       {
+        "criterion": "Trade-off narration in the write-up (what you rejected and why)",
+        "points": 15
+       }
+      ],
+      "submissionHint": "Submit your design doc (markdown or link) + diagram image/link. Time-box the design itself to 45 minutes before writing it up."
+     }
+    }
+   ]
+  },
+  {
+   "code": "M3",
+   "title": "Distributed Messaging in .NET",
+   "track": "Skills",
+   "weekRange": "Weeks 4–6",
+   "summary": "The #1 gap in Gulf Lead/Architect JDs: RabbitMQ + MassTransit, outbox, sagas, and Kafka — ending in a portfolio-grade event-driven pipeline.",
+   "items": [
+    {
+     "type": "Article",
+     "title": "Why Queues: RabbitMQ Fundamentals + MassTransit",
+     "estMinutes": 90,
+     "isFreePreview": false,
+     "contentFile": "m3l1.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Why Queues: RabbitMQ Fundamentals + MassTransit",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q43",
+        "text": "In RabbitMQ, producers publish to ____ which route to ____:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q43o1",
+          "text": "Exchanges → queues",
+          "correct": true
+         },
+         {
+          "id": "q43o2",
+          "text": "Queues → exchanges",
+          "correct": false
+         },
+         {
+          "id": "q43o3",
+          "text": "Topics → partitions",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q44",
+        "text": "MassTransit's main value over the raw RabbitMQ client is:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q44o1",
+          "text": "Message contracts, retries, error queues, and saga support out of the box",
+          "correct": true
+         },
+         {
+          "id": "q44o2",
+          "text": "Lower latency",
+          "correct": false
+         },
+         {
+          "id": "q44o3",
+          "text": "It removes the broker",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q45",
+        "text": "A poison message that keeps failing should end up in:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q45o1",
+          "text": "An error/dead-letter queue after bounded retries",
+          "correct": true
+         },
+         {
+          "id": "q45o2",
+          "text": "An infinite retry loop",
+          "correct": false
+         },
+         {
+          "id": "q45o3",
+          "text": "The database",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "The Outbox Pattern & Exactly-Once Myths",
+     "estMinutes": 90,
+     "isFreePreview": false,
+     "contentFile": "m3l2.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: The Outbox Pattern & Exactly-Once Myths",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q46",
+        "text": "The outbox pattern solves which problem?",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q46o1",
+          "text": "Atomically saving state AND publishing an event (dual-write problem)",
+          "correct": true
+         },
+         {
+          "id": "q46o2",
+          "text": "Slow consumers",
+          "correct": false
+         },
+         {
+          "id": "q46o3",
+          "text": "Message ordering",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q47",
+        "text": "True exactly-once delivery across systems is:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q47o1",
+          "text": "Impossible in general; you build effectively-once with at-least-once + idempotency",
+          "correct": true
+         },
+         {
+          "id": "q47o2",
+          "text": "Guaranteed by Kafka",
+          "correct": false
+         },
+         {
+          "id": "q47o3",
+          "text": "Guaranteed by RabbitMQ",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q48",
+        "text": "Idempotency on the consumer side is usually implemented with:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q48o1",
+          "text": "A processed-message ID store / natural idempotency keys",
+          "correct": true
+         },
+         {
+          "id": "q48o2",
+          "text": "Bigger timeouts",
+          "correct": false
+         },
+         {
+          "id": "q48o3",
+          "text": "Synchronous HTTP calls",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "Sagas & Process Managers (MassTransit State Machines)",
+     "estMinutes": 90,
+     "isFreePreview": false,
+     "contentFile": "m3l3.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Sagas & Process Managers (MassTransit State Machines)",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q49",
+        "text": "A saga replaces a distributed transaction with:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q49o1",
+          "text": "A sequence of local transactions plus compensating actions",
+          "correct": true
+         },
+         {
+          "id": "q49o2",
+          "text": "Two-phase commit",
+          "correct": false
+         },
+         {
+          "id": "q49o3",
+          "text": "A global lock",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q50",
+        "text": "Choreography vs orchestration: orchestration means:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q50o1",
+          "text": "A central coordinator (state machine) drives the flow",
+          "correct": true
+         },
+         {
+          "id": "q50o2",
+          "text": "Services react to each other's events with no coordinator",
+          "correct": false
+         },
+         {
+          "id": "q50o3",
+          "text": "No messaging is used",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q51",
+        "text": "Your ServiceOrder aggregate (Draft → Confirmed → In-Service → Completed) maps naturally to:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q51o1",
+          "text": "A saga state machine when steps span multiple services",
+          "correct": true
+         },
+         {
+          "id": "q51o2",
+          "text": "A stored procedure",
+          "correct": false
+         },
+         {
+          "id": "q51o3",
+          "text": "A CDN",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "Kafka for .NET: Partitions, Consumer Groups, Rebalancing",
+     "estMinutes": 90,
+     "isFreePreview": false,
+     "contentFile": "m3l4.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Kafka for .NET: Partitions, Consumer Groups, Rebalancing",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q52",
+        "text": "Kafka guarantees ordering:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q52o1",
+          "text": "Within a partition only",
+          "correct": true
+         },
+         {
+          "id": "q52o2",
+          "text": "Across the whole topic",
+          "correct": false
+         },
+         {
+          "id": "q52o3",
+          "text": "Across all topics",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q53",
+        "text": "Max useful parallelism of one consumer group equals:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q53o1",
+          "text": "The number of partitions",
+          "correct": true
+         },
+         {
+          "id": "q53o2",
+          "text": "The number of brokers",
+          "correct": false
+         },
+         {
+          "id": "q53o3",
+          "text": "Unlimited",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q54",
+        "text": "Choosing a partition key (e.g., OrderId) primarily controls:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q54o1",
+          "text": "Which events are ordered relative to each other",
+          "correct": true
+         },
+         {
+          "id": "q54o2",
+          "text": "Message size limits",
+          "correct": false
+         },
+         {
+          "id": "q54o3",
+          "text": "Retention time",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Assignment",
+     "title": "LAB: Event-Driven Order Pipeline (Portfolio Repo) (Graded)",
+     "estMinutes": 240,
+     "isFreePreview": false,
+     "assignment": {
+      "instructionsFile": "m3l5.md",
+      "totalPoints": 100,
+      "rubric": [
+       {
+        "criterion": "Saga implemented with compensating actions that actually fire",
+        "points": 30
+       },
+       {
+        "criterion": "Outbox pattern wired and demonstrably atomic with the DB write",
+        "points": 25
+       },
+       {
+        "criterion": "Idempotent consumers (prove a duplicate delivery is harmless)",
+        "points": 20
+       },
+       {
+        "criterion": "Failure demo: broker down / poison message handled and documented",
+        "points": 15
+       },
+       {
+        "criterion": "README explaining the messaging topology",
+        "points": 10
+       }
+      ],
+      "submissionHint": "Submit the repo URL + a short demo script (commands to run the failure scenarios)."
+     }
+    }
+   ]
+  },
+  {
+   "code": "M4",
+   "title": "Modern Microservices: gRPC, YARP & Polyglot Persistence",
+   "track": "Skills",
+   "weekRange": "Weeks 7–9",
+   "summary": "The vocabulary of modern .NET microservices interviews: gRPC contracts, YARP gateways/BFF, Mongo/Elastic/Redis patterns, and Kubernetes for architects.",
+   "items": [
+    {
+     "type": "Article",
+     "title": "gRPC in .NET: Contracts, Streaming, Deadlines",
+     "estMinutes": 90,
+     "isFreePreview": false,
+     "contentFile": "m4l1.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: gRPC in .NET: Contracts, Streaming, Deadlines",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q55",
+        "text": "gRPC beats JSON/REST for service-to-service calls mainly because of:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q55o1",
+          "text": "Binary Protobuf + HTTP/2 multiplexing + strict contracts",
+          "correct": true
+         },
+         {
+          "id": "q55o2",
+          "text": "Easier browser support",
+          "correct": false
+         },
+         {
+          "id": "q55o3",
+          "text": "No need for versioning",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q56",
+        "text": "Protobuf field numbers must never be:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q56o1",
+          "text": "Reused or repurposed once published",
+          "correct": true
+         },
+         {
+          "id": "q56o2",
+          "text": "Greater than 100",
+          "correct": false
+         },
+         {
+          "id": "q56o3",
+          "text": "Sequential",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q57",
+        "text": "Deadlines/cancellation in gRPC exist to:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q57o1",
+          "text": "Stop wasted work and cascading hangs across call chains",
+          "correct": true
+         },
+         {
+          "id": "q57o2",
+          "text": "Reduce payload size",
+          "correct": false
+         },
+         {
+          "id": "q57o3",
+          "text": "Encrypt traffic",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "YARP API Gateway & the BFF Pattern",
+     "estMinutes": 75,
+     "isFreePreview": false,
+     "contentFile": "m4l2.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: YARP API Gateway & the BFF Pattern",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q58",
+        "text": "An API gateway centralizes:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q58o1",
+          "text": "Routing, auth, rate limiting, and cross-cutting concerns at the edge",
+          "correct": true
+         },
+         {
+          "id": "q58o2",
+          "text": "Business logic",
+          "correct": false
+         },
+         {
+          "id": "q58o3",
+          "text": "Database access",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q59",
+        "text": "BFF (Backend-for-Frontend) means:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q59o1",
+          "text": "A gateway tailored per client type (web, mobile, partner)",
+          "correct": true
+         },
+         {
+          "id": "q59o2",
+          "text": "One gateway for everything",
+          "correct": false
+         },
+         {
+          "id": "q59o3",
+          "text": "Frontend talks directly to databases",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q60",
+        "text": "YARP is attractive to .NET teams because:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q60o1",
+          "text": "It's a reverse proxy you configure and extend in C# middleware",
+          "correct": true
+         },
+         {
+          "id": "q60o2",
+          "text": "It's faster than all alternatives in every case",
+          "correct": false
+         },
+         {
+          "id": "q60o3",
+          "text": "It requires no configuration",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "Polyglot Persistence: Mongo, Elasticsearch & Redis Patterns",
+     "estMinutes": 90,
+     "isFreePreview": false,
+     "contentFile": "m4l3.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Polyglot Persistence: Mongo, Elasticsearch & Redis Patterns",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q61",
+        "text": "Elasticsearch should usually be treated as:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q61o1",
+          "text": "A derived, rebuildable read index — not the source of truth",
+          "correct": true
+         },
+         {
+          "id": "q61o2",
+          "text": "The system of record",
+          "correct": false
+         },
+         {
+          "id": "q61o3",
+          "text": "A message broker",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q62",
+        "text": "Document stores (Mongo/Cosmos) fit best when:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q62o1",
+          "text": "Data is read/written as aggregates with flexible schema per document",
+          "correct": true
+         },
+         {
+          "id": "q62o2",
+          "text": "You need multi-row ACID joins everywhere",
+          "correct": false
+         },
+         {
+          "id": "q62o3",
+          "text": "You need full-text relevance ranking",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q63",
+        "text": "Keeping the search index in sync with the primary DB is best done via:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q63o1",
+          "text": "Events/CDC from the write path",
+          "correct": true
+         },
+         {
+          "id": "q63o2",
+          "text": "Manual nightly copy-paste",
+          "correct": false
+         },
+         {
+          "id": "q63o3",
+          "text": "Dual writes with no safeguards",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "Kubernetes for Architects: Deployments, Probes, HPA",
+     "estMinutes": 90,
+     "isFreePreview": false,
+     "contentFile": "m4l4.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Kubernetes for Architects: Deployments, Probes, HPA",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q64",
+        "text": "A liveness probe failing causes Kubernetes to:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q64o1",
+          "text": "Restart the container",
+          "correct": true
+         },
+         {
+          "id": "q64o2",
+          "text": "Stop sending it traffic only",
+          "correct": false
+         },
+         {
+          "id": "q64o3",
+          "text": "Scale the deployment",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q65",
+        "text": "A readiness probe failing causes Kubernetes to:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q65o1",
+          "text": "Remove the pod from the Service endpoints (no traffic)",
+          "correct": true
+         },
+         {
+          "id": "q65o2",
+          "text": "Restart the node",
+          "correct": false
+         },
+         {
+          "id": "q65o3",
+          "text": "Delete the pod",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q66",
+        "text": "HPA (Horizontal Pod Autoscaler) scales based on:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q66o1",
+          "text": "Observed metrics like CPU/memory/custom metrics vs targets",
+          "correct": true
+         },
+         {
+          "id": "q66o2",
+          "text": "Time of day only",
+          "correct": false
+         },
+         {
+          "id": "q66o3",
+          "text": "Number of nodes",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Assignment",
+     "title": "LAB: Strangler-Fig — Split a Monolith (Graded)",
+     "estMinutes": 240,
+     "isFreePreview": false,
+     "assignment": {
+      "instructionsFile": "m4l5.md",
+      "totalPoints": 100,
+      "rubric": [
+       {
+        "criterion": "gRPC service with contract-first proto and a working client",
+        "points": 25
+       },
+       {
+        "criterion": "YARP gateway routing both REST and gRPC backends",
+        "points": 25
+       },
+       {
+        "criterion": "Polyglot persistence: justified choice per store, not one-DB-fits-all",
+        "points": 25
+       },
+       {
+        "criterion": "Deployed to Kubernetes with health probes and resource limits",
+        "points": 25
+       }
+      ],
+      "submissionHint": "Submit repo URL + kubectl output or screenshots proving liveness/readiness probes pass."
+     }
+    }
+   ]
+  },
+  {
+   "code": "M5",
+   "title": "Cloud Architecture & IaC (AZ-305 Path)",
+   "track": "Skills",
+   "weekRange": "Weeks 10–12",
+   "summary": "Architects are interviewed on cloud design, not framework trivia. AZ-305 mental models, Terraform on Azure, UAE compliance, and Well-Architected reviews.",
+   "items": [
+    {
+     "type": "Article",
+     "title": "The AZ-305 Mental Model: Requirements → Architecture",
+     "estMinutes": 75,
+     "isFreePreview": false,
+     "contentFile": "m5l1.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: The AZ-305 Mental Model: Requirements → Architecture",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q67",
+        "text": "AZ-305 questions are fundamentally about:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q67o1",
+          "text": "Mapping business requirements (RPO/RTO, compliance, cost) to service choices",
+          "correct": true
+         },
+         {
+          "id": "q67o2",
+          "text": "Memorizing CLI commands",
+          "correct": false
+         },
+         {
+          "id": "q67o3",
+          "text": "Writing C# code",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q68",
+        "text": "RPO measures:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q68o1",
+          "text": "Maximum acceptable data loss (time)",
+          "correct": true
+         },
+         {
+          "id": "q68o2",
+          "text": "Maximum acceptable downtime",
+          "correct": false
+         },
+         {
+          "id": "q68o3",
+          "text": "Requests per operation",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q69",
+        "text": "Availability Zones protect primarily against:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q69o1",
+          "text": "Datacenter-level failure within a region",
+          "correct": true
+         },
+         {
+          "id": "q69o2",
+          "text": "Region-wide failure",
+          "correct": false
+         },
+         {
+          "id": "q69o3",
+          "text": "Application bugs",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "Terraform Fundamentals for Azure",
+     "estMinutes": 90,
+     "isFreePreview": false,
+     "contentFile": "m5l2.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Terraform Fundamentals for Azure",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q70",
+        "text": "Terraform state exists to:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q70o1",
+          "text": "Map declared resources to real-world infrastructure for diffing",
+          "correct": true
+         },
+         {
+          "id": "q70o2",
+          "text": "Store secrets securely",
+          "correct": false
+         },
+         {
+          "id": "q70o3",
+          "text": "Speed up deployments",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q71",
+        "text": "Team Terraform setups require state to be:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q71o1",
+          "text": "Remote with locking (e.g., Azure Storage backend)",
+          "correct": true
+         },
+         {
+          "id": "q71o2",
+          "text": "Committed to git",
+          "correct": false
+         },
+         {
+          "id": "q71o3",
+          "text": "Stored on one developer's laptop",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q72",
+        "text": "terraform plan is valuable because it:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q72o1",
+          "text": "Shows the exact change set before anything is applied",
+          "correct": true
+         },
+         {
+          "id": "q72o2",
+          "text": "Applies changes faster",
+          "correct": false
+         },
+         {
+          "id": "q72o3",
+          "text": "Formats the code",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "Landing Zones, Identity & UAE Compliance (ISR / DESC / UAE PASS)",
+     "estMinutes": 75,
+     "isFreePreview": false,
+     "contentFile": "m5l3.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Landing Zones, Identity & UAE Compliance (ISR / DESC / UAE PASS)",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q73",
+        "text": "A landing zone is:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q73o1",
+          "text": "A pre-configured, governed environment (identity, network, policy) workloads deploy into",
+          "correct": true
+         },
+         {
+          "id": "q73o2",
+          "text": "A single resource group",
+          "correct": false
+         },
+         {
+          "id": "q73o3",
+          "text": "A VPN",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q74",
+        "text": "Zero Trust's core principle is:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q74o1",
+          "text": "Never trust, always verify — regardless of network location",
+          "correct": true
+         },
+         {
+          "id": "q74o2",
+          "text": "Trust everything inside the VNet",
+          "correct": false
+         },
+         {
+          "id": "q74o3",
+          "text": "Block all external traffic",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q75",
+        "text": "For Dubai government-adjacent work, data residency typically means:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q75o1",
+          "text": "Hosting regulated data in approved in-country/in-region locations",
+          "correct": true
+         },
+         {
+          "id": "q75o2",
+          "text": "Using any region with the lowest cost",
+          "correct": false
+         },
+         {
+          "id": "q75o3",
+          "text": "Avoiding the cloud entirely",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "Cost, Resilience & Well-Architected Reviews",
+     "estMinutes": 75,
+     "isFreePreview": false,
+     "contentFile": "m5l4.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Cost, Resilience & Well-Architected Reviews",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q76",
+        "text": "The five Well-Architected pillars are reliability, security, cost, operational excellence and:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q76o1",
+          "text": "Performance efficiency",
+          "correct": true
+         },
+         {
+          "id": "q76o2",
+          "text": "Developer happiness",
+          "correct": false
+         },
+         {
+          "id": "q76o3",
+          "text": "Compliance",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q77",
+        "text": "The biggest quick win on most Azure bills is usually:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q77o1",
+          "text": "Right-sizing/reserving compute and killing idle resources",
+          "correct": true
+         },
+         {
+          "id": "q77o2",
+          "text": "Switching languages",
+          "correct": false
+         },
+         {
+          "id": "q77o3",
+          "text": "More regions",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q78",
+        "text": "A health-model approach to resilience starts by:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q78o1",
+          "text": "Defining what 'healthy' means per user-facing flow and measuring it",
+          "correct": true
+         },
+         {
+          "id": "q78o2",
+          "text": "Adding retries everywhere",
+          "correct": false
+         },
+         {
+          "id": "q78o3",
+          "text": "Doubling instance counts",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Assignment",
+     "title": "LAB: Terraform an AKS + PostgreSQL Environment (Graded)",
+     "estMinutes": 240,
+     "isFreePreview": false,
+     "assignment": {
+      "instructionsFile": "m5l5.md",
+      "totalPoints": 100,
+      "rubric": [
+       {
+        "criterion": "Terraform: full environment up/down cleanly (plan + apply + destroy)",
+        "points": 30
+       },
+       {
+        "criterion": "Remote state with locking configured",
+        "points": 20
+       },
+       {
+        "criterion": "AZ-305-style design decisions documented (compute, data, identity)",
+        "points": 30
+       },
+       {
+        "criterion": "Cost estimate + at least one cost-optimization decision",
+        "points": 20
+       }
+      ],
+      "submissionHint": "Submit repo URL with the .tf files + your design-decisions doc."
+     }
+    }
+   ]
+  },
+  {
+   "code": "M6",
+   "title": "AI Engineering Edge",
+   "track": "Skills",
+   "weekRange": "Week 13",
+   "summary": "Your differentiator, deepened: production RAG, agent patterns beyond function calling, and the evals/guardrails that separate demos from systems.",
+   "items": [
+    {
+     "type": "Article",
+     "title": "RAG Done Properly: Chunking, Hybrid Search, Reranking",
+     "estMinutes": 90,
+     "isFreePreview": false,
+     "contentFile": "m6l1.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: RAG Done Properly: Chunking, Hybrid Search, Reranking",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q79",
+        "text": "Most RAG quality problems trace back to:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q79o1",
+          "text": "Retrieval (chunking, indexing, query formulation) rather than the LLM",
+          "correct": true
+         },
+         {
+          "id": "q79o2",
+          "text": "The model temperature",
+          "correct": false
+         },
+         {
+          "id": "q79o3",
+          "text": "JSON formatting",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q80",
+        "text": "Hybrid search combines:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q80o1",
+          "text": "Keyword (BM25) and vector similarity, often with a reranker on top",
+          "correct": true
+         },
+         {
+          "id": "q80o2",
+          "text": "Two LLMs",
+          "correct": false
+         },
+         {
+          "id": "q80o3",
+          "text": "SQL and NoSQL",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q81",
+        "text": "Chunking strategy should primarily follow:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q81o1",
+          "text": "The document's semantic structure (sections, headings), not fixed character counts alone",
+          "correct": true
+         },
+         {
+          "id": "q81o2",
+          "text": "Always 512 tokens",
+          "correct": false
+         },
+         {
+          "id": "q81o3",
+          "text": "Database page size",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "Agents & Function-Calling Patterns (Beyond Your 9 Plugins)",
+     "estMinutes": 90,
+     "isFreePreview": false,
+     "contentFile": "m6l2.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Agents & Function-Calling Patterns (Beyond Your 9 Plugins)",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q82",
+        "text": "The step from function calling to 'agent' is mainly:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q82o1",
+          "text": "A loop: the model observes results and decides next actions toward a goal",
+          "correct": true
+         },
+         {
+          "id": "q82o2",
+          "text": "More plugins",
+          "correct": false
+         },
+         {
+          "id": "q82o3",
+          "text": "A bigger model",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q83",
+        "text": "The most important safety control for tool-using agents is:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q83o1",
+          "text": "Constraining tools' blast radius (read-only by default, scoped permissions, human approval for writes)",
+          "correct": true
+         },
+         {
+          "id": "q83o2",
+          "text": "A polite system prompt",
+          "correct": false
+         },
+         {
+          "id": "q83o3",
+          "text": "Lower temperature",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q84",
+        "text": "Router patterns (like your two-step LLM router) exist to:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q84o1",
+          "text": "Cheaply classify intent before invoking expensive or risky paths",
+          "correct": true
+         },
+         {
+          "id": "q84o2",
+          "text": "Replace authentication",
+          "correct": false
+         },
+         {
+          "id": "q84o3",
+          "text": "Avoid logging",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "Evals & Guardrails for Production LLM Features",
+     "estMinutes": 75,
+     "isFreePreview": false,
+     "contentFile": "m6l3.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Evals & Guardrails for Production LLM Features",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q85",
+        "text": "An eval set is:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q85o1",
+          "text": "A versioned collection of input → expected-behavior cases run on every change",
+          "correct": true
+         },
+         {
+          "id": "q85o2",
+          "text": "Manual spot-checking in production",
+          "correct": false
+         },
+         {
+          "id": "q85o3",
+          "text": "User complaints",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q86",
+        "text": "LLM-as-judge is useful for:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q86o1",
+          "text": "Scoring open-ended outputs at scale, with periodic human calibration",
+          "correct": true
+         },
+         {
+          "id": "q86o2",
+          "text": "Replacing all human review forever",
+          "correct": false
+         },
+         {
+          "id": "q86o3",
+          "text": "Generating training data only",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q87",
+        "text": "For an NL→SQL feature, the single most important guardrail is:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q87o1",
+          "text": "Validating/allow-listing generated SQL against a constrained semantic layer",
+          "correct": true
+         },
+         {
+          "id": "q87o2",
+          "text": "Asking the model to be careful",
+          "correct": false
+         },
+         {
+          "id": "q87o3",
+          "text": "Hiding errors from users",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Assignment",
+     "title": "LAB: Add Production-Grade RAG to a FastTrack-Style Assistant (Graded)",
+     "estMinutes": 240,
+     "isFreePreview": false,
+     "assignment": {
+      "instructionsFile": "m6l4.md",
+      "totalPoints": 100,
+      "rubric": [
+       {
+        "criterion": "Working RAG pipeline over your own documents",
+        "points": 30
+       },
+       {
+        "criterion": "Retrieval quality: chunking + embedding choices justified",
+        "points": 25
+       },
+       {
+        "criterion": "At least one agent/tool-call flow beyond plain chat",
+        "points": 25
+       },
+       {
+        "criterion": "Eval harness or honest quality assessment of outputs",
+        "points": 20
+       }
+      ],
+      "submissionHint": "Submit repo URL + 3 example Q&A transcripts showing retrieval grounding."
+     }
+    }
+   ]
+  },
+  {
+   "code": "M7",
+   "title": "Interview Execution & Offers",
+   "track": "Interview",
+   "weekRange": "Weeks 14–15",
+   "summary": "Converting preparation into offers: a STAR story bank from your real projects, mock-loop strategy, and Gulf + big-tech compensation negotiation.",
+   "items": [
+    {
+     "type": "Article",
+     "title": "STAR Story Bank from Your Real Projects",
+     "estMinutes": 90,
+     "isFreePreview": false,
+     "contentFile": "m7l1.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: STAR Story Bank from Your Real Projects",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q88",
+        "text": "A strong STAR answer spends most of its time on:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q88o1",
+          "text": "Action and Result — what YOU did and the measured outcome",
+          "correct": true
+         },
+         {
+          "id": "q88o2",
+          "text": "Situation background",
+          "correct": false
+         },
+         {
+          "id": "q88o3",
+          "text": "Team description",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q89",
+        "text": "Amazon-style behavioral interviews map stories to:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q89o1",
+          "text": "Leadership Principles (Ownership, Dive Deep, Deliver Results...)",
+          "correct": true
+         },
+         {
+          "id": "q89o2",
+          "text": "Technology stacks",
+          "correct": false
+         },
+         {
+          "id": "q89o3",
+          "text": "Certifications",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q90",
+        "text": "How many distinct prepared stories does a full loop realistically need?",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q90o1",
+          "text": "8–12 covering conflict, failure, ambiguity, leadership, delivery",
+          "correct": true
+         },
+         {
+          "id": "q90o2",
+          "text": "2–3",
+          "correct": false
+         },
+         {
+          "id": "q90o3",
+          "text": "30+",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "The Mock Loop Playbook",
+     "estMinutes": 75,
+     "isFreePreview": false,
+     "contentFile": "m7l2.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: The Mock Loop Playbook",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q91",
+        "text": "The highest-leverage interview practice activity is:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q91o1",
+          "text": "Timed mocks with a real human and feedback, simulating full loop conditions",
+          "correct": true
+         },
+         {
+          "id": "q91o2",
+          "text": "Re-reading notes",
+          "correct": false
+         },
+         {
+          "id": "q91o3",
+          "text": "Watching videos passively",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q92",
+        "text": "When stuck in a coding round, the best move is to:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q92o1",
+          "text": "Narrate your thinking, state the brute force, then optimize aloud",
+          "correct": true
+         },
+         {
+          "id": "q92o2",
+          "text": "Go silent until you solve it",
+          "correct": false
+         },
+         {
+          "id": "q92o3",
+          "text": "Ask to skip the question",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q93",
+        "text": "Interview pipelines should be sequenced so that:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q93o1",
+          "text": "Practice companies come before dream companies",
+          "correct": true
+         },
+         {
+          "id": "q93o2",
+          "text": "Dream companies come first while motivation is high",
+          "correct": false
+         },
+         {
+          "id": "q93o3",
+          "text": "All loops happen the same week",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "Gulf & Big-Tech Compensation: Levels and Negotiation",
+     "estMinutes": 75,
+     "isFreePreview": false,
+     "contentFile": "m7l3.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: Gulf & Big-Tech Compensation: Levels and Negotiation",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q94",
+        "text": "The strongest negotiation lever is:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q94o1",
+          "text": "A competing offer or credible alternative",
+          "correct": true
+         },
+         {
+          "id": "q94o2",
+          "text": "Explaining personal expenses",
+          "correct": false
+         },
+         {
+          "id": "q94o3",
+          "text": "Asking repeatedly",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q95",
+        "text": "Big-tech total compensation typically includes:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q95o1",
+          "text": "Base + equity (RSUs) + bonus — evaluate all three, not just base",
+          "correct": true
+         },
+         {
+          "id": "q95o2",
+          "text": "Base salary only",
+          "correct": false
+         },
+         {
+          "id": "q95o3",
+          "text": "Hourly overtime",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q96",
+        "text": "When asked for expected salary early, the best practice is to:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q96o1",
+          "text": "Deflect politely toward role fit and ask for their budgeted range",
+          "correct": true
+         },
+         {
+          "id": "q96o2",
+          "text": "Give your minimum acceptable number",
+          "correct": false
+         },
+         {
+          "id": "q96o3",
+          "text": "Refuse to discuss compensation ever",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    },
+    {
+     "type": "Article",
+     "title": "CV / LinkedIn Final Pass & Pipeline Strategy",
+     "estMinutes": 60,
+     "isFreePreview": false,
+     "contentFile": "m7l4.md"
+    },
+    {
+     "type": "Quiz",
+     "title": "Checkpoint: CV / LinkedIn Final Pass & Pipeline Strategy",
+     "estMinutes": 8,
+     "isFreePreview": false,
+     "quiz": {
+      "passPercent": 70,
+      "questions": [
+       {
+        "id": "q97",
+        "text": "The top third of your CV should lead with:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q97o1",
+          "text": "Scope and measurable impact (sole architect, 99.5% latency cut, partners onboarded)",
+          "correct": true
+         },
+         {
+          "id": "q97o2",
+          "text": "A long skills list",
+          "correct": false
+         },
+         {
+          "id": "q97o3",
+          "text": "Education",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q98",
+        "text": "A healthy active job-search pipeline is roughly:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q98o1",
+          "text": "15–25 live applications across tiers, tracked weekly",
+          "correct": true
+         },
+         {
+          "id": "q98o2",
+          "text": "2–3 applications at a time",
+          "correct": false
+         },
+         {
+          "id": "q98o3",
+          "text": "100+ untracked applications",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       },
+       {
+        "id": "q99",
+        "text": "Referrals matter because they:",
+        "kind": "single",
+        "options": [
+         {
+          "id": "q99o1",
+          "text": "Multiply response rates versus cold applications",
+          "correct": true
+         },
+         {
+          "id": "q99o2",
+          "text": "Skip the interview process",
+          "correct": false
+         },
+         {
+          "id": "q99o3",
+          "text": "Guarantee offers",
+          "correct": false
+         }
+        ],
+        "explanation": null
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}
